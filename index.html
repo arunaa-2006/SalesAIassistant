@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Transcription</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sales Conversation Assistant</h1>
+            <p class="subtitle">Real-time conversation transcription with AI suggestions</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="realtime">Real-time Transcription</button>
+            <button class="tab-button" data-tab="file">Audio File Transcription</button>
+        </div>
+
+        <!-- Real-time Transcription Tab -->
+        <div id="realtime-tab" class="tab-content active">
+            <div class="controls">
+                <button id="start-btn" class="btn btn-primary">
+                    Start Recording
+                </button>
+                <button id="stop-btn" class="btn btn-secondary" disabled>
+                    Stop Recording
+                </button>
+                <button id="clear-btn" class="btn btn-outline">
+                    Clear
+                </button>
+            </div>
+            
+            <!-- Analysis Section -->
+            <div class="analysis-section">
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <h3>Sentiment Analysis</h3>
+                    </div>
+                    <div id="sentiment-result" class="analysis-result">
+                        <span class="analysis-placeholder">Waiting for transcription...</span>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <h3>Intent Analysis</h3>
+                    </div>
+                    <div id="intent-result" class="analysis-result">
+                        <span class="analysis-placeholder">Waiting for transcription...</span>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <h3>Entity Analysis</h3>
+                    </div>
+                    <div id="entity-result" class="analysis-result">
+                        <span class="analysis-placeholder">Waiting for transcription...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Interface -->
+            <div class="chat-container-wrapper">
+                <div class="chat-container">
+                    <div class="chat-header">
+                    <div class="chat-header-info">
+                        <h3>Sales Conversation</h3>
+                    </div>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                    <div class="chat-placeholder">
+                        <p>Click "Start Recording" to begin the conversation</p>
+                        <p class="chat-hint"></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <!-- Suggestion Box -->
+                <div class="suggestion-box">
+                    <div class="suggestion-header">
+                        <h3>Suggested Replies</h3>
+                    </div>
+                    <div id="suggestions" class="suggestions-content">
+                        <p class="suggestion-placeholder">Suggestions will appear here when customer speaks...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio File Transcription Tab -->
+        <div id="file-tab" class="tab-content">
+            <div class="info-box">
+                <p><strong>Note:</strong> File transcription plays the audio and uses your microphone to capture it. Please ensure your microphone is enabled and can hear the audio playback.</p>
+            </div>
+            <div class="upload-area" id="upload-area">
+                <div class="upload-content">
+                    <div class="upload-icon"></div>
+                    <p class="upload-text">Drop your .wav file here or click to browse</p>
+                    <input type="file" id="file-input" accept=".wav,audio/*" hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+                        Choose File
+                    </button>
+                </div>
+            </div>
+            <div class="file-info" id="file-info" style="display: none;">
+                <div class="file-details">
+                    <span class="file-name" id="file-name"></span>
+                    <span class="file-size" id="file-size"></span>
+                </div>
+                <button id="transcribe-file-btn" class="btn btn-primary">
+                    Transcribe Audio
+                </button>
+            </div>
+            
+            <div class="controls">
+                <button id="clear-file-btn" class="btn btn-outline">
+                    Clear
+                </button>
+            </div>
+            
+            <!-- Analysis Section -->
+            <div class="analysis-section">
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <span class="analysis-icon">😊</span>
+                        <h3>Sentiment Analysis</h3>
+                    </div>
+                    <div id="file-sentiment-result" class="analysis-result">
+                        <span class="analysis-placeholder">Waiting for transcription...</span>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <span class="analysis-icon">🎯</span>
+                        <h3>Intent Analysis</h3>
+                    </div>
+                    <div id="file-intent-result" class="analysis-result">
+                        <span class="analysis-placeholder">Waiting for transcription...</span>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <span class="analysis-icon">🏷️</span>
+                        <h3>Entity Analysis</h3>
+                    </div>
+                    <div id="file-entity-result" class="analysis-result">
+                        <span class="analysis-placeholder">Waiting for transcription...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="transcription-box">
+                <div id="file-transcript" class="transcript-text">
+                    <p class="placeholder">Upload a .wav file to transcribe...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
